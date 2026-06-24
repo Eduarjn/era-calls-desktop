@@ -6,6 +6,7 @@
 // ============================================================
 const { app, BrowserWindow, Tray, Menu, session, shell, desktopCapturer, nativeImage } = require("electron");
 const path = require("path");
+const { autoUpdater } = require("electron-updater");
 
 const SITE_URL = "https://eduarjn.github.io/era-calls-web/";
 let win = null;
@@ -71,6 +72,9 @@ if (!gotLock) {
 
     // iniciar junto com o Windows
     app.setLoginItemSettings({ openAtLogin: true });
+
+    // verifica atualizações (GitHub Releases) e avisa quando houver
+    autoUpdater.checkForUpdatesAndNotify().catch(() => {});
 
     app.on("activate", () => { if (BrowserWindow.getAllWindows().length === 0) createWindow(); });
   });
