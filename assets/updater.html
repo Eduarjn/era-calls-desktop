@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-BR"><head><meta charset="UTF-8">
+<style>
+  *{box-sizing:border-box;font-family:'Segoe UI',system-ui,sans-serif}
+  body{margin:0;background:#faf9f5;color:#3A3A57}
+  .card{padding:22px 24px;text-align:center}
+  .ico{width:48px;height:48px;border-radius:14px;background:linear-gradient(135deg,#4B3F72,#1F2041);display:grid;place-items:center;margin:0 auto 12px;font-size:24px}
+  h3{margin:0 0 6px;color:#1F2041;font-size:18px}
+  p{margin:0;color:#6B6B80;font-size:13px;min-height:16px}
+  .barWrap{height:8px;border-radius:6px;background:#EDEDF4;overflow:hidden;margin:14px 0 6px;display:none}
+  .barWrap>span{display:block;height:100%;width:0;background:linear-gradient(90deg,#4B3F72,#417B5A);transition:width .2s}
+  .spin{width:34px;height:34px;border-radius:50%;border:4px solid rgba(75,63,114,.2);border-top-color:#4B3F72;animation:s 1s linear infinite;margin:4px auto 10px;display:none}
+  @keyframes s{to{transform:rotate(360deg)}}
+  .row{display:flex;gap:8px;justify-content:center;margin-top:16px}
+  button{border:none;border-radius:9px;padding:9px 16px;font-weight:600;font-size:13px;cursor:pointer}
+  .primary{background:linear-gradient(135deg,#4B3F72,#1F2041);color:#fff;display:none}
+  .soft{background:#EDEDF4;color:#1F2041}
+</style></head>
+<body>
+  <div class="card">
+    <div class="ico">🔄</div>
+    <div class="spin" id="spin"></div>
+    <h3 id="titulo">Verificando atualização…</h3>
+    <div class="barWrap" id="barWrap"><span id="bar"></span></div>
+    <p id="msg"></p>
+    <div class="row">
+      <button class="primary" id="btn">Reiniciar e atualizar</button>
+      <button class="soft" id="fechar">Fechar</button>
+    </div>
+  </div>
+<script>
+  const t=document.getElementById('titulo'), m=document.getElementById('msg'),
+        bw=document.getElementById('barWrap'), b=document.getElementById('bar'),
+        btn=document.getElementById('btn'), spin=document.getElementById('spin');
+  document.getElementById('btn').onclick=()=>window.upd.restart();
+  document.getElementById('fechar').onclick=()=>window.upd.close();
+  window.upd.on(d=>{
+    spin.style.display='none'; bw.style.display='none'; btn.style.display='none';
+    if(d.state==='checking'){ spin.style.display='block'; t.textContent='Verificando atualização…'; m.textContent=''; }
+    else if(d.state==='none'){ t.textContent='Tudo atualizado ✓'; m.textContent='Você já está na versão mais recente.'; }
+    else if(d.state==='available'){ spin.style.display='block'; t.textContent='Atualização disponível'; m.textContent='Baixando a versão '+(d.version||'')+'…'; }
+    else if(d.state==='downloading'){ bw.style.display='block'; b.style.width=(d.percent||0)+'%'; t.textContent='Baixando atualização…'; m.textContent=(d.percent||0)+'%'; }
+    else if(d.state==='ready'){ t.textContent='Atualização pronta!'; m.textContent='Reinicie para aplicar a versão '+(d.version||'')+'.'; btn.style.display='inline-block'; }
+    else if(d.state==='error'){ t.textContent='Não foi possível atualizar'; m.textContent=(d.message||'').slice(0,120); }
+  });
+</script>
+</body></html>
