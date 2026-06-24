@@ -1,6 +1,6 @@
 {
   "name": "era-inteligencia-calls",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "ERA · Inteligência de Calls — app desktop",
   "main": "main.js",
   "author": "ERA Digital",
@@ -17,10 +17,12 @@
     },
     "files": [
       "main.js",
-      "package.json"
+      "package.json",
+      "assets/**/*"
     ],
     "win": {
-      "target": "nsis"
+      "target": "nsis",
+      "icon": "assets/icon.ico"
     },
     "publish": [
       {
@@ -35,13 +37,17 @@
       "allowToChangeInstallationDirectory": true,
       "createDesktopShortcut": true,
       "createStartMenuShortcut": true,
-      "shortcutName": "ERA Inteligencia de Calls"
+      "shortcutName": "ERA Inteligencia de Calls",
+      "installerIcon": "assets/icon.ico",
+      "uninstallerIcon": "assets/icon.ico"
     }
   },
   "devDependencies": {
     "@electron/packager": "^20.0.1",
     "electron": "^31.7.0",
-    "electron-builder": "^24.13.3"
+    "electron-builder": "^24.13.3",
+    "png-to-ico": "^3.0.1",
+    "sharp": "^0.35.2"
   },
   "dependencies": {
     "electron-updater": "^6.8.9"

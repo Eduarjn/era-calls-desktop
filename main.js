@@ -25,6 +25,7 @@ if (!gotLock) {
       width: 1240, height: 840, minWidth: 920, minHeight: 600,
       title: "ERA · Inteligência de Calls",
       backgroundColor: "#faf9f5",
+      icon: path.join(__dirname, "assets", "icon.ico"),
       autoHideMenuBar: true,
       webPreferences: { contextIsolation: true, nodeIntegration: false },
     });
@@ -60,7 +61,7 @@ if (!gotLock) {
 
     // bandeja (ícone ao lado do relógio)
     try {
-      tray = new Tray(nativeImage.createEmpty());
+      tray = new Tray(path.join(__dirname, "assets", "icon.ico"));
       tray.setToolTip("ERA · Inteligência de Calls");
       tray.setContextMenu(Menu.buildFromTemplate([
         { label: "Abrir", click: () => { win.show(); win.focus(); } },

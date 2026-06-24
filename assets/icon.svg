@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#5a4a86"/>
+      <stop offset="1" stop-color="#1F2041"/>
+    </linearGradient>
+  </defs>
+  <rect width="256" height="256" rx="56" fill="url(#g)"/>
+  <g fill="#fff">
+    <!-- antenas -->
+    <circle cx="96" cy="42" r="10"/><rect x="92.5" y="48" width="7" height="24" rx="3.5"/>
+    <circle cx="160" cy="42" r="10"/><rect x="156.5" y="48" width="7" height="24" rx="3.5"/>
+    <!-- "fones" laterais -->
+    <rect x="38" y="118" width="27" height="52" rx="13.5"/>
+    <rect x="191" y="118" width="27" height="52" rx="13.5"/>
+    <!-- cabeça em formato de balão de chat (rabinho embaixo à esquerda) -->
+    <path d="M128 62 C 172 62 202 96 202 140 C 202 178 173 209 135 212 L 92 228 L 101 200 C 78 188 62 166 62 140 C 62 96 84 62 128 62 Z"/>
+    <!-- haste do microfone + ponta -->
+    <path d="M54 162 C 54 200 88 210 112 210" fill="none" stroke="#fff" stroke-width="8" stroke-linecap="round"/>
+    <circle cx="112" cy="210" r="8"/>
+  </g>
+  <g fill="#2a2550">
+    <!-- olhos -->
+    <circle cx="111" cy="140" r="12"/>
+    <circle cx="153" cy="140" r="12"/>
+  </g>
+  <!-- sorriso -->
+  <path d="M106 166 Q 132 188 158 166" fill="none" stroke="#2a2550" stroke-width="10" stroke-linecap="round"/>
+</svg>
